@@ -35,7 +35,7 @@ class ComputoSpider(scrapy.Spider):
     def parse_items(self, response):
 
         tipo_producto = utils.obtener_sub_categoria_str(response.url)
-        sub_categoria = 'electrodomesticos'
+        sub_categoria = 'computo'
         categoria = 'tecnologia'
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item__container col-xs-6 col-sm-6 col-md-4 col-lg-4")]'
         # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
