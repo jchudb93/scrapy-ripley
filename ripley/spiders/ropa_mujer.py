@@ -11,9 +11,52 @@ import ripley.utils as utils
 class RopaMujerSpider(scrapy.Spider):
     name = 'ropa-mujer'
     allowed_domains = ['simple.ripley.com.pe']
-    start_urls = ['https://simple.ripley.com.pe/moda-mujer/ropa-mujer/todo-ropa-mujer?source=menu']
+    start_urls = [
+        'https://simple.ripley.com.pe/calzado/zapatillas/urbana-mujer',
+        'https://simple.ripley.com.pe/calzado/calzado-mujer/zapatos-de-vestir',
+        'https://simple.ripley.com.pe/moda-mujer/belleza-y-accesorios/relojes?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/belleza-y-accesorios/carteras?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/belleza-y-accesorios/perfumes?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/belleza-y-accesorios/maquillaje?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/belleza-y-accesorios/bijouterie-y-joyeria?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/belleza-y-accesorios/tratamiento?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-interior/todo-ropa-interior?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-interior/pijamas?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/chompas?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/casacas?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/polerones?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/blazers?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/blusas?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/polos?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/vestidos?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/faldas-y-shorts?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/jeans?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/pantalones?source=menu',
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/ropa-de-bano?source=menu'
+        ]
+    tipos_producto = [
+        'zapatillas',
+        'calzado-mujer',
+        'relojes',
+        'carteras',
+        'perfumes',
+        'maquillaje',
+        'bijouterie-y-joyeria',
+        'tratamiento',
+        'ropa-interior',
+        'pijamas'
+        'chompas',
+        'casacas',
+        'polerones',
+        'blazers',
+        'blusas',
+        'polos',
+        'vestidos',
+        'faldas-y-shorts',
+        'jeans',
+        'pantalones',
+        'ropa-de-bano']
 
-    
     def parse(self, response):
 
         for r in self.parse_items(response):
@@ -28,14 +71,19 @@ class RopaMujerSpider(scrapy.Spider):
 
     def parse_items(self, response):
 
-        tipo_producto = utils.obtener_sub_categoria_str(response.url)
-        sub_categoria = 'ropa-mujer'
         categoria = 'ropa-mujer'
+
+        tipo_producto = utils.obtener_tipo_producto(response.url, self.tipos_producto)
+        
+        if ('zapatillas' in tipo_producto) or ('calzado-mujer' in tipo_producto):
+            item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item__container col-xs-6 col-sm-6 col-md-4 col-lg-4")]'
+        else:
+            item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item--moda catalog-product-item__container col-xs-12 col-sm-6 col-md-4 col-lg-4")]'
+            
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item--moda catalog-product-item__container col-xs-12 col-sm-6 col-md-4 col-lg-4")]'
         # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
         for producto in response.xpath(item_xpath):
             ripley_item_loader = RipleyItemLoader(response=response)
-            
             nombre = producto.xpath('.//div[has-class("catalog-product-details__name")]/text()').extract()
             marca = ''
             precio = producto.xpath('.//div[has-class("catalog-prices")]/ul/li/text()').extract_first()
@@ -46,7 +94,6 @@ class RopaMujerSpider(scrapy.Spider):
             ripley_item_loader.add_value('imagen', url_imagen)
             ripley_item_loader.add_value('descripcion', '')
             ripley_item_loader.add_value('tipo_producto', tipo_producto)
-            ripley_item_loader.add_value('sub_categoria', sub_categoria)
             ripley_item_loader.add_value('categoria', categoria)
             ripley_item_loader.add_value('url', str(response.url))
         

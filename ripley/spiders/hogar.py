@@ -8,16 +8,54 @@ from scrapy.linkextractors import LinkExtractor
 
 import ripley.utils as utils
 
-class DeporteSpider(scrapy.Spider):
-    name = 'deporte'
+
+class HogarSpider(scrapy.Spider):
+    name = 'hogar'
     allowed_domains = ['simple.ripley.com.pe']
     start_urls = [
-        'https://simple.ripley.com.pe/deporte/maquinas/todo-maquinas?source=menu', 
-        'https://simple.ripley.com.pe/deporte/bicicletas/todo-bicicletas?source=menu',
-        'https://simple.ripley.com.pe/deporte/zapatillas-deportivas/todo-zapatillas?source=menu'
+        'https://simple.ripley.com.pe/hogar/muebles/sofas-y-juegos-de-sala?source=menu',
+        'https://simple.ripley.com.pe/hogar/muebles/mesas-varias?source=menu',
+        'https://simple.ripley.com.pe/muebles/comedor-y-bar/ver-todo-comedor-y-bar',
+        'https://simple.ripley.com.pe/hogar/organizacion/escritorios?source=menu',
+        'https://simple.ripley.com.pe/muebles/muebles-de-dormitorio/roperos',
+        'https://simple.ripley.com.pe/hogar/cocina-y-barbecue/juegos-de-ollas?source=menu',
+        'https://simple.ripley.com.pe/hogar/cocina-y-barbecue/ollas-y-sartenes?source=menu',
+        'https://simple.ripley.com.pe/hogar/cocina-y-barbecue/horno-y-reposteria?source=menu',
+        'https://simple.ripley.com.pe/hogar/menaje-de-mesa/vajillas?source=menu',
+        'https://simple.ripley.com.pe/hogar/menaje-de-mesa/cubiertos?source=menu',
+        'https://simple.ripley.com.pe/hogar/alfombras/ver-todo-alfombras?source=menu',
+        'https://simple.ripley.com.pe/hogar/lamparas/ver-todo-lamparas?source=menu',
+        'https://simple.ripley.com.pe/hogar/arte-de-pared/cuadros?source=menu',
+        'https://simple.ripley.com.pe/hogar/arte-de-pared/espejos?source=menu',
+        'https://simple.ripley.com.pe/hogar/regalos/juegos-de-mesa?source=menu',
+        'https://simple.ripley.com.pe/hogar/regalos/decoracion?source=menu',
+        'https://simple.ripley.com.pe/hogar/regalos/marcos-de-fotos?source=menu',
+        'https://simple.ripley.com.pe/dormitorio/ropa-de-cama/edredones-y-sham',
+        'https://simple.ripley.com.pe/dormitorio/ropa-de-cama/cubrecamas-y-sham'
+    ]
+
+    tipos_producto = [
+        'sofas',
+        'mesas',
+        'comedor',
+        'escritorios',
+        'roperos',
+        'juegos-de-ollas',
+        'ollas-y-sartenes',
+        'horno-y-reposteria',
+        'vajillas',
+        'cubiertos',
+        'alfombras',
+        'lamparas',
+        'cuadros',
+        'espejos',
+        'juegos-de-mesa',
+        'decoracion',
+        'marcos-de-fotos',
+        'edredones',
+        'cubrecamas'
         ]
-    tipos_producto = ['maquinas', 'bicicletas', 'zapatillas']
-    
+   
     def parse(self, response):
 
         for r in self.parse_items(response):
@@ -31,10 +69,9 @@ class DeporteSpider(scrapy.Spider):
             yield Request(url=url, callback=self.parse_items)
 
     def parse_items(self, response):
-
         
         tipo_producto = utils.obtener_tipo_producto(response.url, self.tipos_producto)
-        categoria = 'deportes'
+        categoria = 'hogar'
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item__container col-xs-6 col-sm-6 col-md-4 col-lg-4")]'
         # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
         for producto in response.xpath(item_xpath):
@@ -53,4 +90,3 @@ class DeporteSpider(scrapy.Spider):
             ripley_item_loader.add_value('url', str(response.url))
         
             yield ripley_item_loader.load_item()
-

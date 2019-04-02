@@ -11,8 +11,8 @@ import ripley.utils as utils
 class CelularSpider(scrapy.Spider):
     name = 'celular'
     allowed_domains = ['simple.ripley.com.pe']
-    start_urls = ['https://simple.ripley.com.pe/celulares/smartphones/todo-celulares?source=menu'
-        ]
+    start_urls = [
+        'https://simple.ripley.com.pe/celulares/smartphones/todo-celulares?source=menu']
 
     
     def parse(self, response):
@@ -29,9 +29,8 @@ class CelularSpider(scrapy.Spider):
 
     def parse_items(self, response):
 
-        tipo_producto = utils.obtener_sub_categoria_str(response.url)
-        sub_categoria = 'celulares'
-        categoria = 'celulares'
+        tipo_producto = 'smartphone' # utils.obtener_sub_categoria_str(response.url)
+        categoria = 'tecnologia'
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item__container col-xs-6 col-sm-6 col-md-4 col-lg-4")]'
         # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
         for producto in response.xpath(item_xpath):
@@ -46,7 +45,6 @@ class CelularSpider(scrapy.Spider):
             ripley_item_loader.add_value('imagen', url_imagen)
             ripley_item_loader.add_value('descripcion', '')
             ripley_item_loader.add_value('tipo_producto', tipo_producto)
-            ripley_item_loader.add_value('sub_categoria', sub_categoria)
             ripley_item_loader.add_value('categoria', categoria)
             ripley_item_loader.add_value('url', str(response.url))
         
