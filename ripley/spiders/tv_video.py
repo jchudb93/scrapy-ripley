@@ -22,7 +22,13 @@ class TvVideoSpider(scrapy.Spider):
         'https://simple.ripley.com.pe/tv-y-video/audio-portatil/ver-todo-audio-portatil?source=menu',
         'https://simple.ripley.com.pe/tv-y-video/car-audio/ver-todo-car-audio?source=menu']
 
-    tipos_productos = ['televisores', 'video-y-accesorios', 'audio-para-tv', 'sonido', 'audio-portatil', 'car-audio']
+    tipos_producto = [
+        'televisores',
+        'video-y-accesorios',
+        'audio-para-tv',
+        'sonido',
+        'audio-portatil',
+        'car-audio']
 
     def parse(self, response):
 
