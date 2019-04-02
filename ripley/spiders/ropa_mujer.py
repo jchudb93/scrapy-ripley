@@ -8,10 +8,10 @@ from scrapy.linkextractors import LinkExtractor
 
 import ripley.utils as utils
 
-class RopaHombreSpider(scrapy.Spider):
-    name = 'ropa-hombre'
+class RopaMujerSpider(scrapy.Spider):
+    name = 'ropa-mujer'
     allowed_domains = ['simple.ripley.com.pe']
-    start_urls = ['https://simple.ripley.com.pe/moda-hombre/ropa-hombre/todo-ropa-hombre?source=menu']
+    start_urls = ['https://simple.ripley.com.pe/moda-mujer/ropa-mujer/todo-ropa-mujer?source=menu']
 
     
     def parse(self, response):
