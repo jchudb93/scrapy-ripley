@@ -8,17 +8,20 @@ from scrapy.linkextractors import LinkExtractor
 
 import ripley.utils as utils
 
+
 class ComputoSpider(scrapy.Spider):
     name = 'computo'
     allowed_domains = ['simple.ripley.com.pe']
-    start_urls = ['https://simple.ripley.com.pe/computo/laptops/todas-las-laptops?source=menu',\
-        'https://simple.ripley.com.pe/computo/all-in-one/all-in-one?source=menu',\
-        'https://simple.ripley.com.pe/computo/zona-gamer/todo-zona-gamer?source=menu',\
-        'https://simple.ripley.com.pe/computo/proyectores-y-monitores/todo-proyectores-monitores?source=menu',\
-        'https://simple.ripley.com.pe/computo/impresoras-y-tintas/todo-impresoras?source=menu',\
-        'https://simple.ripley.com.pe/computo/accesorios-y-software/todo-accesorios-y-software?source=menu',\
+    start_urls = [
+        'https://simple.ripley.com.pe/computo/laptops/todas-las-laptops?source=menu',
+        'https://simple.ripley.com.pe/computo/all-in-one/all-in-one?source=menu',
+        'https://simple.ripley.com.pe/computo/zona-gamer/todo-zona-gamer?source=menu',
+        'https://simple.ripley.com.pe/computo/proyectores-y-monitores/todo-proyectores-monitores?source=menu',
+        'https://simple.ripley.com.pe/computo/impresoras-y-tintas/todo-impresoras?source=menu',
+        'https://simple.ripley.com.pe/computo/accesorios-y-software/todo-accesorios-y-software?source=menu',
         'https://simple.ripley.com.pe/computo/almacenamiento/todo-almacenamiento?source=menu']
 
+    tipos_producto = ['laptop', 'all-in-one', 'zona-gamer', 'proyectores', 'impresoras', 'accesorios', 'almacenamiento']
     
     def parse(self, response):
 
@@ -34,11 +37,9 @@ class ComputoSpider(scrapy.Spider):
 
     def parse_items(self, response):
 
-        tipo_producto = utils.obtener_sub_categoria_str(response.url)
-        sub_categoria = 'computo'
+        tipo_producto = utils.obtener_tipo_producto(response.url, self.tipos_producto)
         categoria = 'tecnologia'
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item__container col-xs-6 col-sm-6 col-md-4 col-lg-4")]'
-        # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
         for producto in response.xpath(item_xpath):
             ripley_item_loader = RipleyItemLoader(response=response)
             marca = producto.xpath('.//div[has-class("brand-logo")]/span/text()').extract()
@@ -51,7 +52,6 @@ class ComputoSpider(scrapy.Spider):
             ripley_item_loader.add_value('imagen', url_imagen)
             ripley_item_loader.add_value('descripcion', '')
             ripley_item_loader.add_value('tipo_producto', tipo_producto)
-            ripley_item_loader.add_value('sub_categoria', sub_categoria)
             ripley_item_loader.add_value('categoria', categoria)
             ripley_item_loader.add_value('url', str(response.url))
         

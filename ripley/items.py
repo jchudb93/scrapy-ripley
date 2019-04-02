@@ -33,7 +33,6 @@ class RipleyItem(scrapy.Item):
     imagen = scrapy.Field()
     descripcion = scrapy.Field()
     tipo_producto = scrapy.Field()
-    sub_categoria = scrapy.Field()
     categoria = scrapy.Field()
     url = scrapy.Field()
 

@@ -11,7 +11,10 @@ import ripley.utils as utils
 class RopaMujerSpider(scrapy.Spider):
     name = 'ropa-mujer'
     allowed_domains = ['simple.ripley.com.pe']
-    start_urls = ['https://simple.ripley.com.pe/moda-mujer/ropa-mujer/todo-ropa-mujer?source=menu']
+    start_urls = [
+        'https://simple.ripley.com.pe/calzado/zapatillas/urbana-mujer'
+        
+        ]
 
     
     def parse(self, response):
@@ -28,14 +31,12 @@ class RopaMujerSpider(scrapy.Spider):
 
     def parse_items(self, response):
 
-        tipo_producto = utils.obtener_sub_categoria_str(response.url)
-        sub_categoria = 'ropa-mujer'
+        tipo_producto = ''
         categoria = 'ropa-mujer'
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item--moda catalog-product-item__container col-xs-12 col-sm-6 col-md-4 col-lg-4")]'
         # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
         for producto in response.xpath(item_xpath):
             ripley_item_loader = RipleyItemLoader(response=response)
-            
             nombre = producto.xpath('.//div[has-class("catalog-product-details__name")]/text()').extract()
             marca = ''
             precio = producto.xpath('.//div[has-class("catalog-prices")]/ul/li/text()').extract_first()
@@ -46,7 +47,6 @@ class RopaMujerSpider(scrapy.Spider):
             ripley_item_loader.add_value('imagen', url_imagen)
             ripley_item_loader.add_value('descripcion', '')
             ripley_item_loader.add_value('tipo_producto', tipo_producto)
-            ripley_item_loader.add_value('sub_categoria', sub_categoria)
             ripley_item_loader.add_value('categoria', categoria)
             ripley_item_loader.add_value('url', str(response.url))
         
