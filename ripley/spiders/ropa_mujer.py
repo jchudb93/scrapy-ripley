@@ -29,8 +29,8 @@ class RopaMujerSpider(scrapy.Spider):
     def parse_items(self, response):
 
         tipo_producto = utils.obtener_sub_categoria_str(response.url)
-        sub_categoria = 'ropa-hombre'
-        categoria = 'ropa-hombre'
+        sub_categoria = 'ropa-mujer'
+        categoria = 'ropa-mujer'
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item--moda catalog-product-item__container col-xs-12 col-sm-6 col-md-4 col-lg-4")]'
         # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
         for producto in response.xpath(item_xpath):
