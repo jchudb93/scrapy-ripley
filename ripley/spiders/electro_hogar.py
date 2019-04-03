@@ -13,17 +13,45 @@ class ElectroHogarSpider(scrapy.Spider):
     name = 'electro-hogar'
     allowed_domains = ['simple.ripley.com.pe']
     start_urls = [
-        'https://simple.ripley.com.pe/electrohogar/lavado-y-secado/todo-lavado?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/refrigeracion/todo-refrigeracion?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/cocinas-y-hornos/todo-cocinas?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/todos-los-electrodomesticos?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/climatizacion-y-bano/todo-climatizacion-y-bano?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/cuidado-personal/todo-cuidado-personal?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/herramientas-electricas/todo-herramientas?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/herramientas-manuales/todo-herramientas-manuales?source=menu'
+        'https://simple.ripley.com.pe/electrohogar/lavado-y-secado/lavadoras?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/lavado-y-secado/secadoras?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/refrigeracion/refrigeradoras?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/refrigeracion/frigobares?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/cocinas-y-hornos/cocinas?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/licuadoras?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/hornos-microondas?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/ollas-arroceras?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/aspiradoras?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/hidrolavadoras?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/planchas?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/batidoras?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/hervidores?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/hornos-electricos?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/cafeteras?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/extractores-y-exprimidores?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/climatizacion-y-bano/ventiladores?source=menu',
+        'https://simple.ripley.com.pe/electrohogar/climatizacion-y-bano/aire-acondicionado?source=menu'       
     ]
 
-    tipos_producto = ['lavado', 'refrigeracion', 'cocinas', 'electrodomesticos', 'climatizacion', 'cuidado-personal', 'herramientas-electricas', 'herramientas-manuales']
+    tipos_producto = [
+        'lavadoras',
+        'secadoras',
+        'refrigeradoras',
+        'frigobares',
+        'cocinas',
+        'licuadoras',
+        'hornos-microondas',
+        'ollas-arroceras',
+        'aspiradoras',
+        'hidrolavadoras',
+        'planchas',
+        'hervidores',
+        'hornos-electricos',
+        'cafeteras',
+        'extractores-y-exprimidores',
+        'ventiladores',
+        'aire-acondicionado'
+        ]
    
     def parse(self, response):
 
