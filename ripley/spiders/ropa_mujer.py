@@ -32,7 +32,11 @@ class RopaMujerSpider(scrapy.Spider):
         'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/faldas-y-shorts?source=menu',
         'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/jeans?source=menu',
         'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/pantalones?source=menu',
-        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/ropa-de-bano?source=menu'
+        'https://simple.ripley.com.pe/moda-mujer/ropa-mujer/ropa-de-bano?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-mujer/mallas-y-pantalones?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-mujer/polos-y-tops?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-mujer/poleras-y-casacas?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-mujer/shorts?source=menu',
         ]
     tipos_producto = [
         'zapatillas',
@@ -55,7 +59,12 @@ class RopaMujerSpider(scrapy.Spider):
         'faldas-y-shorts',
         'jeans',
         'pantalones',
-        'ropa-de-bano']
+        'ropa-de-bano',
+        'ropa-deportiva-mujer/mallas-y-pantalones',
+        'ropa-deportiva-mujer/polos-y-tops',
+        'ropa-deportiva-mujer/poleras-y-casacas',
+        'ropa-deportiva-mujer/shorts'
+        ]
 
     def parse(self, response):
 

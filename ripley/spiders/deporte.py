@@ -12,11 +12,56 @@ class DeporteSpider(scrapy.Spider):
     name = 'deporte'
     allowed_domains = ['simple.ripley.com.pe']
     start_urls = [
-        'https://simple.ripley.com.pe/deporte/maquinas/todo-maquinas?source=menu', 
-        'https://simple.ripley.com.pe/deporte/bicicletas/todo-bicicletas?source=menu',
-        'https://simple.ripley.com.pe/deporte/zapatillas-deportivas/todo-zapatillas?source=menu'
+        'https://simple.ripley.com.pe/deporte/maquinas/elipticas?source=menu',
+        'https://simple.ripley.com.pe/deporte/maquinas/trotadoras?source=menu',
+        'https://simple.ripley.com.pe/deporte/maquinas/spinning?source=menu',
+        'https://simple.ripley.com.pe/deporte/maquinas/bancas-y-abdominales?source=menu',
+        'https://simple.ripley.com.pe/deporte/bicicletas/montaneras?source=menu',
+        'https://simple.ripley.com.pe/deporte/bicicletas/bmx?source=menu',
+        'https://simple.ripley.com.pe/deporte/bicicletas/infantiles?source=menu',
+        'https://simple.ripley.com.pe/deporte/bicicletas/zapatillas?source=menu',
+        'https://simple.ripley.com.pe/deporte/bicicletas/electricos?source=menu',
+        'https://simple.ripley.com.pe/deporte/camping-y-tiempo-libre/skates-scooters-y-patines?source=menu',
+        'https://simple.ripley.com.pe/deporte/camping-y-tiempo-libre/carpas?source=menu',
+        'https://simple.ripley.com.pe/deporte/camping-y-tiempo-libre/mochilas-y-bolsos?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-mujer/mallas-y-pantalones?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-mujer/polos-y-tops?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-mujer/poleras-y-casacas?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-mujer/shorts?source=menu',
+        'https://simple.ripley.com.pe/deporte/zapatillas-deportivas/mujer?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/poleras-y-casacas?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/shorts?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/pantalones?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/camisetas-y-polos?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/relojes-deportivos?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/clubs-y-selecciones?source=menu',
+        'https://simple.ripley.com.pe/deporte/zapatillas-deportivas/hombre?source=menu'
         ]
-    tipos_producto = ['maquinas', 'bicicletas', 'zapatillas']
+
+    tipos_producto = [
+        'elipticas',
+        'trotadoras',
+        'spinning',
+        'bancas-y-abdominales',
+        'montaneras',
+        'bmx',
+        'infantiles',
+        'zapatillas',
+        'electricos',
+        'skates-scooters-y-patines',
+        'carpas',
+        'mochilas-y-bolsos',
+        'mujer/mallas-y-pantalones',
+        'mujer/shorts',
+        'zapatillas-deportivas/mujer',
+        'hombre/poleras-y-casacas',
+        'hombre/shorts',
+        'hombre/pantalones',
+        'hombre/camisetas-y-polos',
+        'hombre/relojes-deportivos'
+        'hombre/clubs-y-selecciones',
+        'zapatillas-deportivas/hombre'
+        ]
     
     def parse(self, response):
 

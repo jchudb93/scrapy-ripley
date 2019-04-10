@@ -13,15 +13,31 @@ class ComputoSpider(scrapy.Spider):
     name = 'computo'
     allowed_domains = ['simple.ripley.com.pe']
     start_urls = [
-        'https://simple.ripley.com.pe/computo/laptops/todas-las-laptops?source=menu',
+        'https://simple.ripley.com.pe/computo/laptops/2-en-1?source=menu',
+        'https://simple.ripley.com.pe/computo/laptops/laptops-tradicionales?source=menu',
         'https://simple.ripley.com.pe/computo/all-in-one/all-in-one?source=menu',
-        'https://simple.ripley.com.pe/computo/zona-gamer/todo-zona-gamer?source=menu',
-        'https://simple.ripley.com.pe/computo/proyectores-y-monitores/todo-proyectores-monitores?source=menu',
-        'https://simple.ripley.com.pe/computo/impresoras-y-tintas/todo-impresoras?source=menu',
-        'https://simple.ripley.com.pe/computo/accesorios-y-software/todo-accesorios-y-software?source=menu',
-        'https://simple.ripley.com.pe/computo/almacenamiento/todo-almacenamiento?source=menu']
+        'https://simple.ripley.com.pe/computo/zona-gamer/laptops-gamer?source=menu',
+        'https://simple.ripley.com.pe/computo/zona-gamer/accesorios-gamer?source=menu',
+        'https://simple.ripley.com.pe/computo/proyectores-y-monitores/proyectores?source=menu',
+        'https://simple.ripley.com.pe/computo/accesorios-y-software/mouse-teclados-y-parlantes?source=menu',
+        'https://simple.ripley.com.pe/computo/accesorios-y-software/software-y-antivirus?source=menu',
+        'https://simple.ripley.com.pe/computo/almacenamiento/memorias-usb?source=menu',
+        'https://simple.ripley.com.pe/computo/almacenamiento/discos-duros?source=menu',
+        'https://simple.ripley.com.pe/computo/impresoras-y-tintas/multifuncionales?source=menu'
+        ]
 
-    tipos_producto = ['laptop', 'all-in-one', 'zona-gamer', 'proyectores', 'impresoras', 'accesorios', 'almacenamiento']
+    tipos_producto = [
+        '2-en-1',
+        'laptops-tradicionales',
+        'all-in-one',
+        'laptops-gamer',
+        'accesorios-gamer',
+        'proyectores',
+        'mouse-teclados-y-parlantes',
+        'software',
+        'memorias-usb',
+        'discos-duros',
+        'multifuncionales']
     
     def parse(self, response):
 

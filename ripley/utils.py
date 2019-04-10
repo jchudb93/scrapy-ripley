@@ -8,5 +8,6 @@ def obtener_tipo_producto(url, tipos_producto):
     
     for item in tipos_producto:
         if item in url:
+            item = item.replace('/','-')
             return item
     return ''
