@@ -29,6 +29,7 @@ class RopaHombreSpider(scrapy.Spider):
         'https://simple.ripley.com.pe/moda-hombre/ropa-hombre/ternos?source=menu',
         'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/poleras-y-casacas?source=menu',
         'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/shorts?source=menu',
+        'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/pantalones?source=menu',
         'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/camisetas-y-polos?source=menu',
         'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/relojes-deportivos?source=menu',
         'https://simple.ripley.com.pe/deporte/ropa-deportiva-hombre/clubs-y-selecciones?source=menu',
@@ -51,9 +52,10 @@ class RopaHombreSpider(scrapy.Spider):
             'ternos',
             'poleras-y-casacas',
             'shorts',
+            'pantalones',
             'camisetas-y-polos',
             'relojes-deportivos',
-            'clubs-y-selecciones'
+            'clubs-y-selecciones',
             ]
     def parse(self, response):
 

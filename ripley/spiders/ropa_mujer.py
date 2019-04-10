@@ -60,9 +60,9 @@ class RopaMujerSpider(scrapy.Spider):
         'jeans',
         'pantalones',
         'ropa-de-bano',
-        'mallas-y-pantalones',
-        'polos-y-tops',
-        'poleras-y-casacas',
+        'ropa-deportiva-mujer/mallas-y-pantalones',
+        'ropa-deportiva-mujer/polos-y-tops',
+        'ropa-deportiva-mujer/poleras-y-casacas',
         'ropa-deportiva-mujer/shorts'
         ]
 

@@ -6,6 +6,7 @@ import io
 def nombrar_archivo(archivo):
     nombre = ''.join(archivo.split('.')[:-1]).split('\\')[-1]
     return nombre
+    
 def main():
     archivos = glob.glob('./*.json')
     for archivo in archivos:
