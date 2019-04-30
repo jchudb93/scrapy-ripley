@@ -27,13 +27,13 @@ def clean_html(html):
 class RipleyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    nombre = scrapy.Field()
-    precio = scrapy.Field()
-    marca = scrapy.Field()
-    imagen = scrapy.Field()
-    descripcion = scrapy.Field()
-    tipo_producto = scrapy.Field()
-    categoria = scrapy.Field()
+    name = scrapy.Field()
+    price = scrapy.Field()
+    brand = scrapy.Field()
+    img = scrapy.Field()
+    description = scrapy.Field()
+    productType = scrapy.Field()
+    category = scrapy.Field()
     url = scrapy.Field()
 
 class RipleyItemLoader(ItemLoader):

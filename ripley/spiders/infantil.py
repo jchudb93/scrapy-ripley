@@ -1,37 +1,47 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
-from ripley.items import RipleyItemLoader
-from scrapy import Spider, Request
-from scrapy.spiders import Rule, CrawlSpider
-from scrapy.linkextractors import LinkExtractor
 
-import ripley.utils as utils
-
-
-class ElectroHogarSpider(scrapy.Spider):
-    name = 'electro-hogar'
+class InfantilSpider(scrapy.Spider):
+    name = 'infantil'
     allowed_domains = ['simple.ripley.com.pe']
     start_urls = [
-        'https://simple.ripley.com.pe/electrohogar/lavado-y-secado/lavadoras?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/lavado-y-secado/secadoras?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/aspiradoras?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/hidrolavadoras?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/electrodomesticos/planchas?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/climatizacion-y-bano/ventiladores?source=menu',
-        'https://simple.ripley.com.pe/electrohogar/climatizacion-y-bano/aire-acondicionado?source=menu'       
+        'https://simple.ripley.com.pe/infantil/jugueteria/juguetes-para-ninas?source=menu',
+        'https://simple.ripley.com.pe/infantil/jugueteria/juguetes-para-ninos?source=menu',
+        'https://simple.ripley.com.pe/infantil/jugueteria/pre-escolar-y-bebes?source=menu',
+        'https://simple.ripley.com.pe/infantil/juegos-de-exterior/bicicletas-ninos?source=menu',
+        'https://simple.ripley.com.pe/infantil/mundo-bebe/coches?source=menu',
+        'https://simple.ripley.com.pe/infantil/mundo-bebe/sillas-de-auto?source=menu',
+        'https://simple.ripley.com.pe/infantil/mundo-bebe/cunas-y-corrales?source=menu',
+        'https://simple.ripley.com.pe/infantil/mundo-bebe/sillas-de-comer?source=menu',
+        'https://simple.ripley.com.pe/infantil/mundo-bebe/bano?source=menu',
+        'https://simple.ripley.com.pe/infantil/mundo-bebe/alimentacion-y-lactancia?source=menu',
+        'https://simple.ripley.com.pe/infantil/maternidad/lactancia?source=menu',
+        'https://simple.ripley.com.pe/infantil/maternidad/extractores?source=menu',
+        'https://simple.ripley.com.pe/infantil/maternidad/brasiers-para-lactancia?source=menu',
+        'https://simple.ripley.com.pe/infantil/maternidad/esterilizadores-y-calentadores?source=menu',
+        'https://simple.ripley.com.pe/infantil/mundo-bebe/biberones-y-chupones',
     ]
 
     tipos_producto = [
-        'lavadoras',
-        'secadoras',
-        'aspiradoras',
-        'hidrolavadoras',
-        'planchas',
-        'ventiladores',
-        'aire-acondicionado'
+        'juguete-para-ninas',
+        'juguete-para-ninos',
+        'juguete-pre-escolar-y-bebes',
+        'bicicletas-para-ninos',
+        'coches',
+        'sillas-de-auto',
+        'cunas-y-corrales',
+        'sillas-de-comer',
+        'bano-para-bebe',
+        'alimentacion-y-lactancia'
+        'lactancia',
+        'extractores',
+        'brasiers-para-lactancia',
+        'esterilzadores-y-calentadores',
+        'biberones-y-chupones',
+        'bolsos-y-cambiadores'
         ]
-   
+
     def parse(self, response):
 
         for r in self.parse_items(response):
@@ -47,7 +57,7 @@ class ElectroHogarSpider(scrapy.Spider):
     def parse_items(self, response):
         
         tipo_producto = utils.obtener_tipo_producto(response.url, self.tipos_producto)
-        categoria = 'electrodomesticos'
+        categoria = 'infantil'
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item__container col-xs-6 col-sm-6 col-md-4 col-lg-4")]'
         # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
         for producto in response.xpath(item_xpath):
@@ -66,3 +76,4 @@ class ElectroHogarSpider(scrapy.Spider):
             ripley_item_loader.add_value('url', str(response.url))
         
             yield ripley_item_loader.load_item()
+

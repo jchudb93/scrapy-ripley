@@ -13,16 +13,6 @@ class HogarSpider(scrapy.Spider):
     name = 'hogar'
     allowed_domains = ['simple.ripley.com.pe']
     start_urls = [
-        'https://simple.ripley.com.pe/hogar/muebles/sofas-y-juegos-de-sala?source=menu',
-        'https://simple.ripley.com.pe/hogar/muebles/mesas-varias?source=menu',
-        'https://simple.ripley.com.pe/muebles/comedor-y-bar/ver-todo-comedor-y-bar',
-        'https://simple.ripley.com.pe/hogar/organizacion/escritorios?source=menu',
-        'https://simple.ripley.com.pe/muebles/muebles-de-dormitorio/roperos',
-        'https://simple.ripley.com.pe/hogar/cocina-y-barbecue/juegos-de-ollas?source=menu',
-        'https://simple.ripley.com.pe/hogar/cocina-y-barbecue/ollas-y-sartenes?source=menu',
-        'https://simple.ripley.com.pe/hogar/cocina-y-barbecue/horno-y-reposteria?source=menu',
-        'https://simple.ripley.com.pe/hogar/menaje-de-mesa/vajillas?source=menu',
-        'https://simple.ripley.com.pe/hogar/menaje-de-mesa/cubiertos?source=menu',
         'https://simple.ripley.com.pe/hogar/alfombras/ver-todo-alfombras?source=menu',
         'https://simple.ripley.com.pe/hogar/lamparas/ver-todo-lamparas?source=menu',
         'https://simple.ripley.com.pe/hogar/arte-de-pared/cuadros?source=menu',
@@ -35,16 +25,6 @@ class HogarSpider(scrapy.Spider):
     ]
 
     tipos_producto = [
-        'sofas',
-        'mesas',
-        'comedor',
-        'escritorios',
-        'roperos',
-        'juegos-de-ollas',
-        'ollas-y-sartenes',
-        'horno-y-reposteria',
-        'vajillas',
-        'cubiertos',
         'alfombras',
         'lamparas',
         'cuadros',
@@ -80,13 +60,13 @@ class HogarSpider(scrapy.Spider):
             nombre = producto.xpath('.//div[has-class("catalog-product-details__name")]/text()').extract()
             precio = producto.xpath('.//div[has-class("catalog-prices")]/ul/li/text()').extract_first()
             url_imagen = producto.xpath('.//div[has-class("images-preview")]//img/@data-src').extract_first()
-            ripley_item_loader.add_value('marca', marca)
-            ripley_item_loader.add_value('nombre', nombre)
-            ripley_item_loader.add_value('precio', precio)
-            ripley_item_loader.add_value('imagen', url_imagen)
-            ripley_item_loader.add_value('descripcion', '')
-            ripley_item_loader.add_value('tipo_producto', tipo_producto)
-            ripley_item_loader.add_value('categoria', categoria)
+            ripley_item_loader.add_value('brand', marca)
+            ripley_item_loader.add_value('name', nombre)
+            ripley_item_loader.add_value('price', precio)
+            ripley_item_loader.add_value('img', url_imagen)
+            ripley_item_loader.add_value('description', '')
+            ripley_item_loader.add_value('productType', tipo_producto)
+            ripley_item_loader.add_value('category', categoria)
             ripley_item_loader.add_value('url', str(response.url))
         
             yield ripley_item_loader.load_item()

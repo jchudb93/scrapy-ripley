@@ -45,7 +45,7 @@ class TvVideoSpider(scrapy.Spider):
     def parse_items(self, response):
 
         tipo_producto = utils.obtener_tipo_producto(response.url, self.tipos_producto)
-        categoria = 'tecnologia'
+        categoria = 'tv-y-audio'
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item__container col-xs-6 col-sm-6 col-md-4 col-lg-4")]'
         # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
         for producto in response.xpath(item_xpath):
@@ -54,13 +54,13 @@ class TvVideoSpider(scrapy.Spider):
             nombre = producto.xpath('.//div[has-class("catalog-product-details__name")]/text()').extract()
             precio = producto.xpath('.//div[has-class("catalog-prices")]/ul/li/text()').extract_first()
             url_imagen = producto.xpath('.//div[has-class("images-preview")]//img/@data-src').extract_first()
-            ripley_item_loader.add_value('marca', marca)
-            ripley_item_loader.add_value('nombre', nombre)
-            ripley_item_loader.add_value('precio', precio)
-            ripley_item_loader.add_value('imagen', url_imagen)
-            ripley_item_loader.add_value('descripcion', '')
-            ripley_item_loader.add_value('tipo_producto', tipo_producto)
-            ripley_item_loader.add_value('categoria', categoria)
+            ripley_item_loader.add_value('brand', marca)
+            ripley_item_loader.add_value('name', nombre)
+            ripley_item_loader.add_value('price', precio)
+            ripley_item_loader.add_value('img', url_imagen)
+            ripley_item_loader.add_value('description', '')
+            ripley_item_loader.add_value('productType', tipo_producto)
+            ripley_item_loader.add_value('category', categoria)
             ripley_item_loader.add_value('url', str(response.url))
         
             yield ripley_item_loader.load_item()
