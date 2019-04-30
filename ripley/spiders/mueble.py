@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
+from ripley.items import RipleyItemLoader
+from scrapy import Spider, Request
+from scrapy.spiders import Rule, CrawlSpider
+from scrapy.linkextractors import LinkExtractor
+
+import ripley.utils as utils
+
 
 class MuebleSpider(scrapy.Spider):
-    name = 'hogar'
+    name = 'mueble'
     allowed_domains = ['simple.ripley.com.pe']
     start_urls = [
         'https://simple.ripley.com.pe/hogar/muebles/sofas-y-juegos-de-sala?source=menu',
@@ -36,7 +43,7 @@ class MuebleSpider(scrapy.Spider):
     def parse_items(self, response):
         
         tipo_producto = utils.obtener_tipo_producto(response.url, self.tipos_producto)
-        categoria = 'mueble'
+        categoria = 'muebles'
         item_xpath = '//div//a[has-class("catalog-product-item catalog-product-item__container col-xs-6 col-sm-6 col-md-4 col-lg-4")]'
         # //*[@id="catalog-page"]/div/div[2]/div[3]/section/div/div/a[1]
         for producto in response.xpath(item_xpath):

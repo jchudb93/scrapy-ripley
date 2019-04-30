@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
+from ripley.items import RipleyItemLoader
+from scrapy import Spider, Request
+from scrapy.spiders import Rule, CrawlSpider
+from scrapy.linkextractors import LinkExtractor
+
+import ripley.utils as utils
+
 
 class CocinaSpider(scrapy.Spider):
     name = 'cocina'
@@ -31,6 +38,7 @@ class CocinaSpider(scrapy.Spider):
         'licuadoras',
         'hornos-microondas',
         'ollas-arroceras',
+        'batidoras'
         'hervidores',
         'hornos-electricos',
         'cafeteras',

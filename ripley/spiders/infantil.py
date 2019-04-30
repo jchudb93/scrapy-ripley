@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
+from ripley.items import RipleyItemLoader
+from scrapy import Spider, Request
+from scrapy.spiders import Rule, CrawlSpider
+from scrapy.linkextractors import LinkExtractor
+
+import ripley.utils as utils
+
 
 class InfantilSpider(scrapy.Spider):
     name = 'infantil'
@@ -24,15 +31,15 @@ class InfantilSpider(scrapy.Spider):
     ]
 
     tipos_producto = [
-        'juguete-para-ninas',
-        'juguete-para-ninos',
-        'juguete-pre-escolar-y-bebes',
+        'juguetes-para-ninas',
+        'juguetes-para-ninos',
+        'pre-escolar-y-bebes',
         'bicicletas-para-ninos',
         'coches',
         'sillas-de-auto',
         'cunas-y-corrales',
         'sillas-de-comer',
-        'bano-para-bebe',
+        'bano',
         'alimentacion-y-lactancia'
         'lactancia',
         'extractores',
