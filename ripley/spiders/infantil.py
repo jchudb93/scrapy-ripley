@@ -58,7 +58,8 @@ class InfantilSpider(scrapy.Spider):
         
         for pagina in range(2, n_paginas + 1):
 
-            url = f'{response.url}&page={pagina}'
+            # url = f'{response.url}&page={pagina}'
+            url = '%s&page=%s' % (response.url, pagina)
             yield Request(url=url, callback=self.parse_items)
 
     def parse_items(self, response):
